@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+<meta charset="UTF-8">
+<title>RAFID ББСБ</title>
+
+<style>
+*{box-sizing:border-box;font-family:"Segoe UI",sans-serif}
+body{
+ margin:0;min-height:100vh;display:flex;flex-direction:column;
+ background:
+ linear-gradient(rgba(0,0,0,.65),rgba(0,0,0,.85)),
+ url("https://images.unsplash.com/photo-1505761671935-60b3a7427bad?auto=format&fit=crop&w=1600&q=80");
+ background-size:cover;background-position:center;color:#fff
+}
+.hidden{display:none}
+.hero{text-align:center;padding:30px 20px}
+.hero h1{font-size:28px;line-height:1.4;margin:10px 0}
+.subtitle{color:#4caf50;font-weight:600}
+.container{flex:1;display:flex;align-items:center;justify-content:center;padding:30px}
+.card{
+ background:#fff;color:#222;width:460px;border-radius:20px;
+ padding:30px;box-shadow:0 25px 60px rgba(0,0,0,.45)
+}
+h2{text-align:center;margin-bottom:20px}
+input,textarea{
+ width:100%;padding:14px;margin-bottom:12px;
+ border-radius:12px;border:1px solid #ddd;font-size:15px
+}
+textarea{min-height:90px;resize:vertical}
+button{
+ width:100%;padding:14px;border:none;border-radius:14px;
+ font-size:15px;cursor:pointer
+}
+.btn-main{background:#4f6cf7;color:#fff}
+.btn-alt{background:#222;color:#fff;margin-top:10px}
+.menu{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
+.menu button{
+ flex:1 1 45%;background:#f1f3ff;color:#4f6cf7;
+ border:1px solid #dfe3ff;border-radius:10px;padding:10px
+}
+.section{
+ background:#f7f8ff;padding:15px;border-radius:14px;margin-bottom:15px
+}
+footer{
+ text-align:center;padding:18px;font-size:13px;
+ color:#ddd;background:rgba(0,0,0,.5)
+}
+footer span{color:#4caf50;font-weight:600}
+</style>
+</head>
+
+<body>
+
+<div class="hero">
+ <div class="subtitle">RAFID Банк бус санхүүгийн байгууллага</div>
+ <h1>Бизнес эрхлэгчдэд зориулсан<br>санхүүгийн ухаалаг шийдэл</h1>
+ <p>Улаанбаатар хотын шөнийн өнгө аястай зээлийн үйлчилгээ</p>
+</div>
+
+<div class="container">
+<div class="card">
+
+<!-- START -->
+<div id="start">
+ <button class="btn-main" onclick="showLogin()">Бүртгэлтэй хэрэглэгч</button>
+ <button class="btn-alt" onclick="showRegister()">Шинэ хэрэглэгч</button>
+</div>
+
+<!-- LOGIN -->
+<div id="login" class="hidden">
+ <h2>Нэвтрэх</h2>
+ <input id="loginPhone" placeholder="Утасны дугаар">
+ <input id="loginPass" type="password" placeholder="Нууц үг">
+ <button class="btn-main" onclick="loginCheck()">Нэвтрэх</button>
+ <button class="btn-alt" onclick="back()">Буцах</button>
+</div>
+
+<!-- REGISTER -->
+<div id="register" class="hidden">
+ <h2>Бүртгүүлэх</h2>
+ <input placeholder="Утасны дугаар">
+ <input placeholder="Шинэ нууц үг">
+ <button class="btn-main" onclick="dashboard()">Бүртгэх</button>
+ <button class="btn-alt" onclick="back()">Буцах</button>
+</div>
+
+<!-- DASHBOARD -->
+<div id="dash" class="hidden">
+ <div class="menu">
+  <button onclick="showProfile()">Хувийн мэдээлэл</button>
+  <button onclick="wallet()">Хэтэвч</button>
+  <button onclick="history()">Зээлийн түүх</button>
+  <button onclick="alert('Мэдэгдэл одоогоор байхгүй')">Мэдэгдэл</button>
+  <button onclick="contact()">Холбоо барих</button>
+ </div>
+ <div class="section">
+  <b>Зээлийн боломж:</b><br>
+  5,000,000 – 50,000,000₮
+ </div>
+ <button class="btn-main" onclick="showProfile()">Эрх тогтоох</button>
+ <button class="btn-alt" onclick="logout()">Гарах</button>
+</div>
+
+<!-- PROFILE -->
+<div id="profile" class="hidden">
+ <h2>Хувийн мэдээлэл</h2>
+ <input placeholder="Овог">
+ <input placeholder="Нэр">
+ <input placeholder="Регистр">
+ <input placeholder="Утасны дугаар">
+ <input placeholder="Гэрийн хаяг">
+ <input placeholder="Бизнесийн орлогын дүн">
+ <input placeholder="Бизнесийн чиглэл">
+ <textarea placeholder="Бизнесийн үйл ажиллагааны товч тайлбар"></textarea>
+ <button class="btn-main" onclick="showFee()">Дараагийнх</button>
+ <button class="btn-alt" onclick="dashboard()">Буцах</button>
+</div>
+
+<!-- FEE -->
+<div id="fee" class="hidden">
+ <h2>Зээлийн судалгааны үйлчилгээ</h2>
+ <div class="section">
+  <b>Шимтгэл:</b> 200,000₮<br><br>
+  <b>Данс:</b> 6460039008002220607<br>
+  <b>Хүлээн авагч:</b> А.Энхмаа<br><br>
+  <b>Сүүлийн 6 сарын дансны хуулга (PDF)</b>
+  <input type="file" accept="application/pdf">
+ </div>
+ <button class="btn-main" onclick="startChecking()">Баталгаажуулах</button>
+ <button class="btn-alt" onclick="showProfile()">Буцах</button>
+</div>
+
+<!-- CHECKING -->
+<div id="checking" class="hidden">
+ <h2>Тооцоолж байна…</h2>
+ <p>Таны зээлийн эрхийг тооцоолж байна.</p>
+</div>
+
+<!-- RESULT -->
+<div id="result" class="hidden">
+ <h2>Тооцооллын хариу</h2>
+ <p>
+  <b>Таны өр, орлогын харьцаа хүрэхгүй байгаа тул</b><br>
+  одоогоор зээлийн эрх тогтоох боломжгүй байна.<br><br>
+  <b>30 хоногийн дараа дахин оролдоно уу.</b>
+ </p>
+ <button class="btn-alt" onclick="logout()">Гарах</button>
+</div>
+
+</div>
+</div>
+
+<footer>
+ 📍 <span>Хаяг:</span> СБД-2 хороо, Централ парк тауэр, 2 давхарт 204 тоот<br>
+ ☎ Холбогдох дугаар: <span>70002029</span>
+</footer>
+
+<script>
+const start = el("start"),
+login = el("login"),
+register = el("register"),
+dash = el("dash"),
+profile = el("profile"),
+fee = el("fee"),
+checkingEl = el("checking"),
+result = el("result");
+
+function el(id){return document.getElementById(id)}
+
+function hideAll(){
+ document.querySelectorAll(".card > div")
+ .forEach(d=>d.classList.add("hidden"))
+}
+
+function showLogin(){hideAll();login.classList.remove("hidden")}
+function showRegister(){hideAll();register.classList.remove("hidden")}
+function back(){hideAll();start.classList.remove("hidden")}
+function dashboard(){hideAll();dash.classList.remove("hidden")}
+function showProfile(){hideAll();profile.classList.remove("hidden")}
+function showFee(){hideAll();fee.classList.remove("hidden")}
+
+function startChecking(){
+ hideAll();
+ checkingEl.classList.remove("hidden");
+ setTimeout(showResult,4000);
+}
+
+function showResult(){
+ hideAll();
+ result.classList.remove("hidden");
+}
+
+function loginCheck(){
+ const phone = document.getElementById("loginPhone").value;
+ const pass = document.getElementById("loginPass").value;
+
+ if(phone === "99112233" && pass === "1234"){
+   dashboard();
+ } else {
+   alert("Нэвтрэх боломжгүй");
+ }
+}
+
+function wallet(){alert("Үлдэгдэл: 0₮")}
+function history(){alert("Зээлийн түүх байхгүй")}
+function contact(){alert("Холбоо барих: 70002029")}
+function logout(){location.reload()}
+</script>
+
+</body>
+</html>
